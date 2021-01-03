@@ -46,11 +46,10 @@ wlan_setup () {
 	  IF_WLAN=${ANS_IFCHOICE}
 	  break
 	done
+	break
       ;;
     esac
   done
-
-  echo "Interface ${IF_CHOICE} will be configured"
 
   # Write wireless configuration
 #  cat > /etc/wpa_supplicant/wpa_supplicant.conf << EOM
@@ -80,12 +79,12 @@ wlan_setup () {
 #                                                                      #
 
 # Check network connection
-#ping -c 1 8.8.8.8 > /dev/null
-ping -c 1 xx8.8.8.8 > /dev/null
+ping -c 1 8.8.8.8 > /dev/null
 if [[ $? == 0 ]]; then
   echo "Network reachable"
 else
   echo "Network not reachable"
+
   # Ask if cfg network with script
   echo "Do you want to configure the network?"
   select ANS_NETCFG in "Yes" "No"; do
