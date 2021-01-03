@@ -96,11 +96,15 @@ else
         echo "Wireless or ethernet?"
 	select ANS_NETTYPE in "Wireless" "Ethernet"; do
 	  case ${ANS_NETTYPE} in
-	    Wireless ) wlan_setup ;;
+	    Wireless )
+	      wlan_setup
+	      break
+	    ;;
 	    Ethernet ) echo "Sorry not available yet" && exit 0 ;;
 	  esac
         done
-	;;
+	break
+      ;;
     esac
   done
 fi
