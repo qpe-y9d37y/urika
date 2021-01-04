@@ -81,7 +81,7 @@ useradd -m urika
 apt-get update
 
 # Install required packages.
-apt-get install sudo xorg openbox lightdm firefox gnome-terminal
+apt-get install sudo xorg openbox lightdm firefox gnome-terminal dialog
 
 # Enable autologin.
 cat > /etc/lightdm/lightdm.conf << EOM
