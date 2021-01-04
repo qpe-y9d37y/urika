@@ -38,14 +38,6 @@ arguments:
  -h, --help  show this help message"
 }
 
-#  # Write wireless interface configuration
-#  cat >> /etc/network/interfaces << EOM
-#
-#auto ${IF_WLAN}
-#iface ${IF_WLAN} inet dhcp
-#wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-#EOM
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                                                                      #
 #                               BEGINNING                              #
