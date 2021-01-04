@@ -103,10 +103,11 @@ while true; do
 done
 EOM
 
-# Create html directory
-mkdir -p /home/urika/html/{images,icons}
+# Copy html directory.
+cp -r ./html /home/urika/
 chown -R urika:urika /home/urika/html
-chmod -R 755 /home/urika/html
+chmod 755 /home/urika/html /home/urika/html/images /home/urika/html/icons
+chmod 644 /home/urika/html/index.html /home/urika/html/images/* /home/urika/html/icons/*
 
 #                                                                      #
 #                                  END                                 #
