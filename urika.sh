@@ -81,7 +81,7 @@ useradd -m urika
 apt-get update
 
 # Install required packages.
-apt-get install sudo xorg openbox lightdm firefox
+apt-get install sudo xorg openbox lightdm firefox gnome-terminal
 
 # Enable autologin.
 cat > /etc/lightdm/lightdm.conf << EOM
@@ -108,6 +108,37 @@ cp -r ./html /home/urika/
 chown -R urika:urika /home/urika/html
 chmod 755 /home/urika/html /home/urika/html/images /home/urika/html/icons
 chmod 644 /home/urika/html/index.html /home/urika/html/images/* /home/urika/html/icons/*
+
+# Create .desktop file for application launcher.
+cat > /usr/share/applications/appurl.desktop << EOM
+[Desktop Entry]
+Name=TerminalURL
+Exec=/home/urika/bin/open_app.sh %u
+Type=Application
+NoDisplay=true
+Categories=System;
+MimeType=x-scheme-handler/app;
+EOM
+
+# Refresh mime types database.
+update-desktop-database
+
+# Copy bin directory.
+cp -r ./bin /home/urika/
+chown -R urika:urika /home/urika/bin
+chmod -R 755 /home/urika/bin
+
+# Add spotify GPG key.
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | apt-key add - 
+
+# Add spotify repository.
+echo "deb http://repository.spotify.com stable non-free" > /etc/apt/sources.list.d/spotify.list
+
+# Update the package list.
+apt-get update
+
+# Install spotify
+apt-get install spotify-client
 
 #                                                                      #
 #                                  END                                 #
