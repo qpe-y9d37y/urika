@@ -81,7 +81,10 @@ useradd -m urika
 apt-get update
 
 # Install required packages.
-apt-get install sudo xorg openbox lightdm firefox gnome-terminal dialog
+apt-get install -y sudo xorg openbox lightdm firefox-esr gnome-terminal dialog curl
+
+# Create lightdm configuration directory.
+mkdir /etc/lightdm
 
 # Enable autologin.
 cat > /etc/lightdm/lightdm.conf << EOM
@@ -98,9 +101,7 @@ chmod 755 /home/urika/.config /home/urika/.config/openbox
 # Create autostart script.
 cat > /home/urika/.config/openbox/autostart << EOM
 #!/bin/bash
-while true; do
-  firefox --kiosk /home/urika/html/index.html &
-done
+firefox --kiosk /home/urika/html/index.html &
 EOM
 
 # Copy html directory.
@@ -138,7 +139,7 @@ echo "deb http://repository.spotify.com stable non-free" > /etc/apt/sources.list
 apt-get update
 
 # Install spotify
-apt-get install spotify-client
+apt-get install -y spotify-client
 
 #                                                                      #
 #                                  END                                 #
