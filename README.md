@@ -1,5 +1,11 @@
 # urika
 
+## Setup
+
+To setup the entertainment system you need a minimal debian 10 fresh installation (it might work on other debian-like distribution but hasn't been tested).
+Setup the network and clone the git repository.
+If you're having difficulties to setup your network, transfer it to your computer with a USB stick, there'll be a wizard to help you set it up.
+
 ## Sources
 
 + File [background.jpg](../master/html/images/background.jpg): [Nationalpark Jasmund](https://en.wikipedia.org/wiki/File:2019_-_Nationalpark_Jasmund_-_03.jpg) by [Moahim](https://commons.wikimedia.org/wiki/User:Moahim) under the Creative Commons [Attribution-Share Alike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license.
