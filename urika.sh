@@ -141,6 +141,10 @@ apt-get update
 # Install spotify
 apt-get install -y spotify-client
 
+# Copy spotify icon
+cp /usr/share/spotify/icons/spotify-linux-128.png /home/urika/html/icons/spotify.png
+chown urika:urika /home/urika/html/icons/spotify.png
+
 #                                                                      #
 #                                  END                                 #
 #                                                                      #
