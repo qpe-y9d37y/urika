@@ -2,6 +2,8 @@
 
 ## Introduction
 
+Urika is a small TV Entertainment System to be able to access streaming services such as Netflix, Disney+ from a simplified interface. It can run on old computers with low performances.
+
 ## Setup
 
 To setup the entertainment system you need a minimal debian 10 fresh installation (it might work on other debian-like distributions but hasn't been tested).
@@ -31,6 +33,9 @@ Finally launch the installer:
 cd /root/urika/
 ./urika.sh
 ```
+
+The icons for the different services and applications are protected by copyright so I prefer not to include them in the repository.
+You can download them and put them in the `/home/urika/html/icons` directory.
 
 ## Attribution
 
