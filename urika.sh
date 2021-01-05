@@ -68,7 +68,7 @@ else
       No ) echo "Cannot continue without reachable network, good bye" && exit 0 ;;
       Yes )
         ./util/deb_netconf.sh
-	    break
+	break
       ;;
     esac
   done
@@ -76,6 +76,9 @@ fi
 
 # Create urika user.
 useradd -m urika
+
+# Grant sudo rights to urika user.
+echo "urika ALL = (ALL) NOPASSWD: ALL" > /etc/sudoers.d/00-Urika
 
 # Update the package list.
 apt-get update
@@ -138,12 +141,22 @@ echo "deb http://repository.spotify.com stable non-free" > /etc/apt/sources.list
 # Update the package list.
 apt-get update
 
-# Install spotify
+# Install spotify.
 apt-get install -y spotify-client
 
-# Copy spotify icon
+# Copy spotify icon.
 cp /usr/share/spotify/icons/spotify-linux-128.png /home/urika/html/icons/spotify.png
 chown urika:urika /home/urika/html/icons/spotify.png
+
+# Set Firefox homepage.
+### user_pref("browser.startup.homepage", "/home/urika/html/index.html");
+### ~/.mozilla/firefox/PROFILE_NAME.default/user.js
+### /etc/skel/.mozilla/firefox/mwad0hks.default/prefs.js
+if [[ -d /home/urika/.mozilla ]]; then 
+  cd /home/urika/.mozilla/firefox/*.default && \
+    echo 'user_pref("browser.startup.homepage", "/home/urika/html/index.html");' > user.js &&
+    chown urika:urika user.js
+fi
 
 #                                                                      #
 #                                  END                                 #
