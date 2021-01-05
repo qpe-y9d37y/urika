@@ -1,15 +1,11 @@
-=======
- urika
-=======
-----------------------
- Entertainment System
-----------------------
+urika: TV Entertainment System
+==============================
 
 Introduction
-============
+------------
 
 Setup
-=====
+-----
 
 To setup the entertainment system you need a minimal debian 10 fresh installation (it might work on other debian-like distribution but hasn't been tested).
 Setup the network and clone the git repository.
