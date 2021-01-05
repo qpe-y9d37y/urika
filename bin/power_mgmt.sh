@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ########################################################################
-# Bash script                                            Quentin Petit #
-# April 2020                                   <petit.quent@gmail.com> #
+# MIT License                             Copyright 2020 Quentin Petit #
+# April 2020                               <qpe-y9d37y@protonmail.com> #
 #                                                                      #
 #                             power_mgmt.sh                            #
 #                                                                      #
