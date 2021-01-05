@@ -8,13 +8,6 @@ To setup the entertainment system you need a minimal debian 10 fresh installatio
 Setup the network and clone the git repository.
 If you're having difficulties to setup your network, transfer it to your computer with a USB stick, there'll be a wizard to help you set it up.
 
-## Sources
-
-+ File [background.jpg](../master/html/images/background.jpg): [Nationalpark Jasmund](https://en.wikipedia.org/wiki/File:2019_-_Nationalpark_Jasmund_-_03.jpg) by [Moahim](https://commons.wikimedia.org/wiki/User:Moahim) under the Creative Commons [Attribution-Share Alike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.en) license.
-+ File [power.png](../master/html/icons/power.png): [Gnome system shutdown](https://commons.wikimedia.org/wiki/File:Gnome-system-shutdown.svg) by [GNOME Project](https://www.gnome.org/) under the Creative Commons [Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en) license.
-+ File [settings.png](../master/html/icons/settings.png): [Gnome applications utilities](https://commons.wikimedia.org/wiki/File:Gnome-applications-utilities.svg) by [GNOME Project](https://www.gnome.org/) under the Creative Commons [Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en) license.
-+ File [terminal.png](../master/html/icons/terminal.png): [Gnome utilities terminal](https://commons.wikimedia.org/wiki/File:Gnome-utilities-terminal.svg) by [GNOME Project](https://www.gnome.org/) under the Creative Commons [Attribution-Share Alike 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/deed.en) license.
-
 ## Attribution
 
 The images used as icons and background are under the Creative Commons license:
@@ -26,10 +19,6 @@ The images used as icons and background are under the Creative Commons license:
 * [settings.png](../master/html/icons/settings.png): [GNOME Project](https://www.gnome.org/) [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.en). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-applications-utilities.svg
 
 * [terminal.png](../master/html/icons/terminal.png): [GNOME Project](https://www.gnome.org/) [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.en). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-utilities-terminal.svg
-
-* EuroLuxemburgo: Jlechuga86 [CC BY](https://creativecommons.org/licenses/by/3.0). Retrieved from: https://commons.wikimedia.org/wiki/File:EuroLuxemburgo.svg
-
-* Snake-anatomy: Uwe Gille [CC BY-SA](http://creativecommons.org/licenses/by-sa/3.0/). Retrieved from: https://commons.wikimedia.org/wiki/File:Snake-anatomy.svg
 
 ## Authors
 
