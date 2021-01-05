@@ -4,9 +4,33 @@
 
 ## Setup
 
-To setup the entertainment system you need a minimal debian 10 fresh installation (it might work on other debian-like distribution but hasn't been tested).
-Setup the network and clone the git repository.
-If you're having difficulties to setup your network, transfer it to your computer with a USB stick, there'll be a wizard to help you set it up.
+To setup the entertainment system you need a minimal debian 10 fresh installation (it might work on other debian-like distributions but hasn't been tested).
+
+Setup the network and clone the git repository as root:
+```
+cd && git clone https://github.com/qpe-y9d37y/urika.git
+```
+
+If you're having difficulties to setup your network, download the zipped repository, unzip it and copy it on a USB stick. On the Debian computer plug your USB stick and do as root:
+```
+lsblk
+```
+You'll see your USB stick listed, for example:
+```
+sdb      179:0    0   3.7G  0 disk
+`-sdb1   179:1    0   3.4G  0 part
+```
+Now, you can do:
+```
+mount /dev/sdb1 /mnt
+cp /mnt/urika /root/
+```
+
+Finally launch the installer:
+```
+cd /root/urika/
+./urika.sh
+```
 
 ## Attribution
 
