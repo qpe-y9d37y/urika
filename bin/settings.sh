@@ -25,7 +25,6 @@
 #                                                                      #
 
 # Files and directories.
-INPUT=/tmp/menu.sh.$$
 RES_LINK="/etc/X11/Xsession.d/45setoutput"
 RES_SCRIPT="/home/urika/bin/setoutput.sh"
 
@@ -36,31 +35,36 @@ RES_SCRIPT="/home/urika/bin/setoutput.sh"
 
 # Function to manage screen resolution
 function scresolution {
-  # Dialog menu.
-  dialog --clear --title "Settings" \
-    --menu "Select your choice:" 15 50 1 \
-    1 "Reset screen resolution" \
-    2 "Change screen resolution" 2>"${INPUT}"
-
-  # Register choice.
-  ITEM=$(<"${INPUT}")
+  # Zenity menu.
+  ANS_SCRES=$(zenity --list \
+    --text="" --radiolist \
+    --column="Pick" --column="Option" \
+    FALSE "Reset screen resolution" \
+    FALSE "Change screen resolution")
 
   # Launch selected action.
-  case ${ITEM} in
-    1)
+  case ${ANS_SCRES} in
+    "Reset screen resolution" )
       if [[ -L ${RES_LINK} ]]; then
         ${RES_LINK}
       else
         xrandr --auto
       fi
     ;;
-    2)
+    "Change screen resolution" )
       # Choose resolution with xrandr -q
+      SCR_RES=$(zenity --list \
+        --text="" --radiolist \
+        --column="Pick" --column="Option" \
+	FALSE Default \
+        $(for RESOLUTION in \
+          $(xrandr -q | grep -o "[[:digit:]]\{1,\}*x[[:digit:]]\{1,\}" | sort -n | uniq); \
+        do echo "FALSE ${RESOLUTION}"; done))
       # If chosen resolution is default
       if [[ ${SCR_RES} == "Default" ]]; then
         # Remove symlink if it exists
         if [[ -L ${RES_LINK} ]]; then
-          rm ${RES_LINK}
+          sudo rm ${RES_LINK}
         fi
         # Apply default resolution
         xrandr --auto
@@ -70,16 +74,15 @@ function scresolution {
         sed -i "s/^RES.*$/RES=\"${SCR_RES}\"/" ${RES_SCRIPT}
         # Create symbolic link ${RES_LINK} -> ${RES_SCRIPT}
         if [[ ! -L ${RES_LINK} ]]; then
-          ln -s ${RES_SCRIPT} ${RES_LINK}
+          sudo ln -s ${RES_SCRIPT} ${RES_LINK}
         elif [[ $(ls -l ${RES_LINK} | awk 'NF>1{print $NF}') == "${RES_SCRIPT}" ]]; then
-          ln -sf ${RES_SCRIPT} ${RES_LINK}
+          sudo ln -sf ${RES_SCRIPT} ${RES_LINK}
         fi
         # Set selected resolution
         ${RES_LINK}
       fi
     ;;
   esac
-    
 }
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -87,19 +90,18 @@ function scresolution {
 #                               BEGINNING                              #
 #                                                                      #
 
-# Launch dialog menu.
-dialog --clear --title "Settings" \
-  --menu "Select your choice:" 15 50 1 \
-  1 "Update Urika" \
-  2 "Screen resolution" 2>"${INPUT}"
-
-# Register choice.
-ITEM=$(<"${INPUT}")
+# Main menu
+ANS_MAIN=$(zenity --list \
+  --text="" --radiolist \
+  --column="Pick" --column="Option" \
+  FALSE "Update system" \
+  FALSE "Screen resolution")
 
 # Launch selected action.
-case ${ITEM} in
-  1) sudo apt update && sudo apt upgrade ;;
-  2) scresolution ;;
+case ${ANS_MAIN} in
+  "Update system" ) sudo apt update && sudo apt -y upgrade ;;
+  "Screen resolution" ) scresolution ;;
+  * ) exit 0 ;;
 esac
 
 #                                                                      #

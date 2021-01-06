@@ -41,7 +41,7 @@ APP=${1#app://}
 
 # Launch app.
 case ${APP} in
-  molotov ) /home/urika/bin/molotov & ;;
+  molotov ) /home/urika/bin/molotov.AppImage --no-sandbox & ;;
   power ) /home/urika/bin/power_mgmt.sh & ;;
   settings ) gnome-terminal -- bash -c "/home/urika/bin/settings.sh" ;;
   * ) nohup "${APP}" &>/dev/null & ;;
