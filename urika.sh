@@ -23,6 +23,13 @@
 #                               VARIABLES                              #
 #                                                                      #
 
+# Users and Groups.
+URIKA_USR="urika"
+URIKA_GRP="urika"
+
+# Files and directories.
+DIR_HOME="/home/urika"
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                                                                      #
 #                               FUNCTIONS                              #
@@ -31,9 +38,7 @@
 # Function to print usage.
 function usage {
   echo "usage: $(basename $0) [-h]
-
 Setup an entertainment system.
-
 arguments:
  -h, --help  show this help message"
 }
@@ -74,11 +79,12 @@ else
   done
 fi
 
-# Create urika user.
-useradd -m urika
+# Create urika group and user.
+groupadd ${URIKA_GRP}
+useradd -m -d ${DIR_HOME} -g ${URIKA_GRP} ${URIKA_USR}
 
 # Grant sudo rights to urika user.
-echo "urika ALL = (ALL) NOPASSWD: ALL" > /etc/sudoers.d/00-Urika
+echo "${URIKA_USR} ALL = (ALL) NOPASSWD: ALL" > /etc/sudoers.d/00-Urika
 
 # Update the package list.
 apt-get update
@@ -92,32 +98,32 @@ mkdir /etc/lightdm
 # Enable autologin.
 cat > /etc/lightdm/lightdm.conf << EOM
 [SeatDefaults]
-autologin-user=urika
+autologin-user=${URIKA_USR}
 user-session=openbox
 EOM
 
 # Create openbox config directory.
-mkdir -p /home/urika/.config/openbox
-chown -R urika:urika /home/urika/.config
-chmod 755 /home/urika/.config /home/urika/.config/openbox
+mkdir -p ${DIR_HOME}/.config/openbox
+chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/.config
+chmod 755 ${DIR_HOME}/.config ${DIR_HOME}/.config/openbox
 
 # Create autostart script.
-cat > /home/urika/.config/openbox/autostart << EOM
+cat > ${DIR_HOME}/.config/openbox/autostart << EOM
 #!/bin/bash
-firefox --kiosk /home/urika/html/index.html &
+firefox --kiosk ${DIR_HOME}/html/index.html &
 EOM
 
 # Copy html directory.
-cp -r ./html /home/urika/
-chown -R urika:urika /home/urika/html
-chmod 755 /home/urika/html /home/urika/html/images /home/urika/html/icons
-chmod 644 /home/urika/html/index.html /home/urika/html/images/* /home/urika/html/icons/*
+cp -r ./html ${DIR_HOME}/
+chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/html
+chmod 755 ${DIR_HOME}/html ${DIR_HOME}/html/images ${DIR_HOME}/html/icons
+chmod 644 ${DIR_HOME}/html/index.html ${DIR_HOME}/html/images/* ${DIR_HOME}/html/icons/*
 
 # Create .desktop file for application launcher.
 cat > /usr/share/applications/appurl.desktop << EOM
 [Desktop Entry]
 Name=TerminalURL
-Exec=/home/urika/bin/open_app.sh %u
+Exec=${DIR_HOME}/bin/open_app.sh %u
 Type=Application
 NoDisplay=true
 Categories=System;
@@ -128,9 +134,9 @@ EOM
 update-desktop-database
 
 # Copy bin directory.
-cp -r ./bin /home/urika/
-chown -R urika:urika /home/urika/bin
-chmod -R 755 /home/urika/bin
+cp -r ./bin ${DIR_HOME}/
+chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/bin
+chmod -R 755 ${DIR_HOME}/bin
 
 # Add spotify GPG key.
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | apt-key add - 
@@ -145,17 +151,17 @@ apt-get update
 apt-get install -y spotify-client
 
 # Copy spotify icon.
-cp /usr/share/spotify/icons/spotify-linux-128.png /home/urika/html/icons/spotify.png
-chown urika:urika /home/urika/html/icons/spotify.png
+cp /usr/share/spotify/icons/spotify-linux-128.png ${DIR_HOME}/html/icons/spotify.png
+chown ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/html/icons/spotify.png
 
 # Set Firefox homepage.
-### user_pref("browser.startup.homepage", "/home/urika/html/index.html");
+### user_pref("browser.startup.homepage", "${DIR_HOME}/html/index.html");
 ### ~/.mozilla/firefox/PROFILE_NAME.default/user.js
 ### /etc/skel/.mozilla/firefox/mwad0hks.default/prefs.js
-if [[ -d /home/urika/.mozilla ]]; then 
-  cd /home/urika/.mozilla/firefox/*.default && \
-    echo 'user_pref("browser.startup.homepage", "/home/urika/html/index.html");' > user.js &&
-    chown urika:urika user.js
+if [[ -d ${DIR_HOME}/.mozilla ]]; then 
+  cd ${DIR_HOME}/.mozilla/firefox/*.default && \
+    echo "user_pref(\"browser.startup.homepage\", \"${DIR_HOME}/html/index.html\");" > user.js && \
+    chown ${URIKA_USR}:${URIKA_GRP} user.js
 fi
 
 #                                                                      #
