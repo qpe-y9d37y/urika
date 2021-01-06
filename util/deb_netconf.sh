@@ -9,7 +9,8 @@
 # Current version: 0.1                                                 #
 # Status: Work in progress                                             #
 #                                                                      #
-# This script purpose is to configure a network interface on Debian.   #
+# This script purpose is to provide a simple wizard to configure a     #
+# wired or wireless network interface on Debian.                       #
 #                                                                      #
 # Version history:                                                     #
 # +----------+--------+------+---------------------------------------+ #
@@ -31,9 +32,7 @@
 # Function to print usage.
 function usage {
   echo "usage: $(basename $0) [-h]
-
 Configure a network interface on Debian.
-
 arguments:
  -h, --help  show this help message"
 }
@@ -109,8 +108,19 @@ if [[ ${IF_DEV} == wl* ]]; then
   # Encrypt password.
   SSID_SECRET=$(wpa_passphrase "${ANS_SSID}" "${SSID_PWD}" | sed 's/^[[:space:]]*//' | grep "^psk")
 
-  # Write wireless configuration
-  cat >> /etc/wpa_supplicant/wpa_supplicant.conf << EOM
+  # Check if wireless configuration already exists.
+  if [[ -f /etc/wpa_supplicant/wpa_supplicant.conf ]]; then
+    echo "Wireless configuration already exists, do you want to overwrite it?"
+    select ANS_WLOVERW in "Yes" "No"; do
+      case ${ANS_WLOVERW} in
+        Yes ) break ;;
+        No ) echo "Good bye then" && exit 0 ;;
+      esac
+    done
+  fi
+
+  # Write wireless configuration.
+  cat > /etc/wpa_supplicant/wpa_supplicant.conf << EOM
 network={
   proto=RSN
   key_mgmt=WPA-PSK
@@ -122,6 +132,31 @@ network={
 }
 EOM
 
+fi
+
+# Check if configuration exists for ${IF_DEV} in /etc/network/interfaces.
+grep ${IF_DEV} /etc/network/interfaces >/dev/null 2>&1
+if [[ $? == 0 ]]; then
+  echo "A configuration for ${IF_DEV} already exists in /etc/network/interfaces."
+  echo "Please remove it and try again."
+  exit 1
+fi
+
+# Check if /etc/network/interfaces.d/ifcfg-${IF_DEV} exists.
+if [[ -z ${ANS_WLOVERW} ]] && [[ -f /etc/network/interfaces.d/ifcfg-${IF_DEV} ]]; then
+  echo "A configuration already exists for ${IF_DEV}, do you want to overwrite it?"
+  select ANS_IFOVERW in "Yes" "No"; do
+    case ${ANS_IFOVERW} in
+      Yes ) break ;;
+      No ) echo "Good bye then" && exit 0 ;;
+    esac
+  done
+fi
+
+# Make sure that interfaces configuration source to interfaces.d/*.
+grep "^source /etc/network/interfaces.d/\*$" /etc/network/interfaces >/dev/null 2>&1
+if [[ $? != 0 ]]; then
+  echo "source /etc/network/interfaces.d/*" >> /etc/network/interfaces
 fi
 
 # Choose method.
@@ -137,8 +172,7 @@ select ANS_METHOD in "DHCP" "Manual" "Cancel"; do
       echo -n "Gateway? " && read GATEWAY
 
       # Set static configuration.
-      cat >> /etc/network/interfaces << EOM
-
+      cat > /etc/network/interfaces.d/ifcfg-${IF_DEV} << EOM
 auto ${IF_DEV}
 iface ${IF_DEV} inet static
   address ${IP_ADDR}
@@ -150,8 +184,7 @@ EOM
     DHCP )
 
       # Set DHCP configuration.
-      cat >> /etc/network/interfaces << EOM
-
+      cat > /etc/network/interfaces.d/ifcfg-${IF_DEV} << EOM
 auto ${IF_DEV}
 iface ${IF_DEV} inet dhcp
 EOM
@@ -162,8 +195,14 @@ done
 
 # Add link to wpa configuration if wireless.
 if [[ ${IF_DEV} == wl* ]]; then
-  echo "wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf" >> /etc/network/interfaces
+  echo "wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf" >> /etc/network/interfaces.d/ifcfg-${IF_DEV}
 fi
+
+# Restart networking.
+if [[ ${IF_DEV} == wl* ]]; then
+  systemctl restart wpa_supplicant
+fi
+systemctl restart networking
 
 #                                                                      #
 #                                  END                                 #
