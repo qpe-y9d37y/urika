@@ -32,7 +32,9 @@
 # Function to print usage.
 function usage {
   echo "usage: $(basename $0) [-h]
+  
 Configure a network interface on Debian.
+
 arguments:
  -h, --help  show this help message"
 }
