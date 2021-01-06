@@ -6,7 +6,7 @@
 #                                                                      #
 #                             power_mgmt.sh                            #
 #                                                                      #
-# Current version: 1.0                                                 #
+# Current version: 2.0                                                 #
 # Status: Stable                                                       #
 #                                                                      #
 # This script purpose it to manage the power of the urika server and   #
@@ -17,6 +17,7 @@
 # |   Date   | Author | Vers | Comment                               | #
 # +==========+========+======+=======================================+ #
 # | 20200420 | QPE    | 1.0  | First stable version                  | #
+# | 20210106 | QPE    | 2.0  | New vers. /w zenity instead of dialog | #
 # +----------+--------+------+---------------------------------------+ #
 ########################################################################
 
@@ -24,42 +25,29 @@
 #                               VARIABLES                              #
 #                                                                      #
 
-# Files and directories.
-INPUT=/tmp/menu.sh.$$
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                                                                      #
 #                               FUNCTIONS                              #
 #                                                                      #
-
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                                                                      #
 #                               BEGINNING                              #
 #                                                                      #
 
-# Launch dialog menu.
-dialog --clear --title "Power Management" \
-  --menu "Select your choice:" 15 50 2 \
-  1 "Restart Urika" \
-  2 "Shutdown Urika" 2>"${INPUT}"
-  
-#ANS=$(zenity --question \
-#  --title="" \
-#  --text "Power Management" \
-#  --ok-label="Restart" \
-#  --cancel-label="Shutdown")
-# $? and ${ANS} might provide different results
-### https://stackoverflow.com/questions/37997249/zenity-dialog-window-with-two-buttons-but-no-text-entry
-
-# Register choice.
-ITEM=$(<"${INPUT}")
+# Ask if user wants to shutdown or restart.
+ACTION=$(zenity --info \
+  --title="Power Management" \
+  --text="" \
+  --ok-label="Cancel" \
+  --extra-button="Restart" \
+  --extra-button="Shutdown")
 
 # Launch selected action.
-case ${ITEM} in
-  1) sudo shutdown -r now;;
-  2) sudo shutdown -h now;;
+case ${ACTION} in
+  Restart ) sudo shutdown -r 0 ;;
+  Shutdown ) sudo shutdown -h 0 ;;
+  * ) exit 0 ;;
 esac
 
 #                                                                      #

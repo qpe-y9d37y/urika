@@ -27,9 +27,6 @@
 # App to launch.
 APP=${1#app://}
 
-# Files and directories.
-DIR_HOME="/home/urika"
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                                                                      #
 #                               FUNCTIONS                              #
@@ -44,9 +41,9 @@ DIR_HOME="/home/urika"
 
 # Launch app.
 case ${APP} in
-  molotov ) ${DIR_HOME}/bin/molotov & ;;
-  power ) gnome-terminal -- bash -c "${DIR_HOME}/bin/power_mgmt.sh" ;;
-  settings ) gnome-terminal -- bash -c "${DIR_HOME}/bin/settings.sh" ;;
+  molotov ) /home/urika/bin/molotov & ;;
+  power ) /home/urika/bin/power_mgmt.sh & ;;
+  settings ) gnome-terminal -- bash -c "/home/urika/bin/settings.sh" ;;
   * ) nohup "${APP}" &>/dev/null & ;;
 esac
 
