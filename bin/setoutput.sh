@@ -42,9 +42,6 @@ RES="1024x768"
 xrandr --auto
 xrandr -s ${RES}
 
-# List possible resolutions
-#xrandr -q
-
 #                                                                      #
 #                                 END                                  #
 #                                                                      #
