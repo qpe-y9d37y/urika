@@ -38,7 +38,9 @@ DIR_HOME="/home/urika"
 # Function to print usage.
 function usage {
   echo "usage: $(basename $0) [-h]
+  
 Setup an entertainment system.
+
 arguments:
  -h, --help  show this help message"
 }
