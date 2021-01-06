@@ -44,6 +44,14 @@ dialog --clear --title "Power Management" \
   --menu "Select your choice:" 15 50 2 \
   1 "Restart Urika" \
   2 "Shutdown Urika" 2>"${INPUT}"
+  
+#ANS=$(zenity --question \
+#  --title="" \
+#  --text "Power Management" \
+#  --ok-label="Restart" \
+#  --cancel-label="Shutdown")
+# $? and ${ANS} might provide different results
+### https://stackoverflow.com/questions/37997249/zenity-dialog-window-with-two-buttons-but-no-text-entry
 
 # Register choice.
 ITEM=$(<"${INPUT}")
