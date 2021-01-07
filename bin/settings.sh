@@ -99,7 +99,10 @@ ANS_MAIN=$(zenity --list --text="" --radiolist \
 
 # Launch selected action.
 case ${ANS_MAIN} in
-  "Update system" ) sudo apt update && sudo apt -y upgrade ;;
+  "Update system" ) 
+    ( sudo apt update && sudo apt -y upgrade ) | zenity --progress \
+      --title="Update system" --percentage=0 --auto-close
+  ;;
   "Screen resolution" ) scresolution ;;
   "Network configuration" ) sudo ${NET_SCRIPT} ;;
   * ) exit 0 ;;
