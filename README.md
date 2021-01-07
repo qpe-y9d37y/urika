@@ -39,7 +39,7 @@ You can download them and put them in the `/home/urika/html/icons` directory.
 
 ## Attribution
 
-The following images by the [GNOME Project](https://www.gnome.org/) used as icons are under the Creative Commons license [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.en):
+The following images by the [GNOME Project](https://www.gnome.org/) are under the Creative Commons license [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.en):
 
 * [power.png](../master/html/icons/power.png). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-system-shutdown.svg
 
@@ -49,7 +49,7 @@ The following images by the [GNOME Project](https://www.gnome.org/) used as icon
 
 * [mute.png](../master/html/icons/mute.png). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-audio-volume-muted.svg
 
-The following image used as background is in the public domain (because it was created by the Image Science & Analysis Laboratory, of the NASA Johnson Space Center. NASA copyright policy states that "NASA material is not protected by copyright unless noted"):
+The following image is in the public domain (because it was created by the Image Science & Analysis Laboratory, of the NASA Johnson Space Center. NASA copyright policy states that "NASA material is not protected by copyright unless noted"):
 
 * [background.jpg](../master/html/images/background.jpg): NASA/Kjell Lindgren. Retrieved from https://en.wikipedia.org/wiki/File:ISS-45_StoryOfWater,_Colors_Patiently_Swirl_-_Haditha_Dam_Lake.jpg
 
