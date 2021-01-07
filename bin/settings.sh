@@ -94,6 +94,7 @@ function scresolution {
 ANS_MAIN=$(zenity --list --text="" --radiolist \
   --column="Pick" --column="Option" \
   FALSE "Update system" \
+  FALSE "Open terminal" \
   FALSE "Screen resolution" \
   FALSE "Network configuration")
 
@@ -103,6 +104,7 @@ case ${ANS_MAIN} in
     ( sudo apt update && sudo apt -y upgrade ) | zenity --progress \
       --title="Update system" --percentage=0 --auto-close
   ;;
+  "Open terminal" ) gnome-terminal ;;
   "Screen resolution" ) scresolution ;;
   "Network configuration" ) sudo ${NET_SCRIPT} ;;
   * ) exit 0 ;;

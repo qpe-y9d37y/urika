@@ -45,8 +45,10 @@ DIR_HOME="/home/urika"
 # Launch app.
 case ${APP} in
   molotov ) ${DIR_HOME}/bin/molotov.AppImage --no-sandbox & ;;
+  mute ) ${DIR_HOME}/bin/setsound.sh 0 ;;
   power ) ${DIR_HOME}/bin/power_mgmt.sh & ;;
   settings ) gnome-terminal -- bash -c "/home/urika/bin/settings.sh" ;;
+  volume ) ${DIR_HOME}/bin/setsound.sh ;;
   * ) nohup "${APP}" &>/dev/null & ;;
 esac
 
