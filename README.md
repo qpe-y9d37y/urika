@@ -39,15 +39,15 @@ You can download them and put them in the `/home/urika/html/icons` directory.
 
 ## Attribution
 
-The following images used as icons are under the Creative Commons license:
+The following images by the [GNOME Project](https://www.gnome.org/) used as icons are under the Creative Commons license [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.en):
 
-* [power.png](../master/html/icons/power.png): [GNOME Project](https://www.gnome.org/) [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.en). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-system-shutdown.svg
+* [power.png](../master/html/icons/power.png). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-system-shutdown.svg
 
-* [settings.png](../master/html/icons/settings.png): [GNOME Project](https://www.gnome.org/) [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.en). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-applications-utilities.svg
+* [settings.png](../master/html/icons/settings.png). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-applications-utilities.svg
 
-* [volume.png](../master/html/icons/volume.png): [GNOME Project](https://www.gnome.org/) [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.en). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-audio-volume-high.svg
+* [volume.png](../master/html/icons/volume.png). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-audio-volume-high.svg
 
-* [mute.png](../master/html/icons/mute.png): [GNOME Project](https://www.gnome.org/) [CC BY-SA](https://creativecommons.org/licenses/by-sa/3.0/deed.en). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-audio-volume-muted.svg
+* [mute.png](../master/html/icons/mute.png). Retrieved from: https://commons.wikimedia.org/wiki/File:Gnome-audio-volume-muted.svg
 
 The following image used as background is in the public domain (because it was created by the Image Science & Analysis Laboratory, of the NASA Johnson Space Center. NASA copyright policy states that "NASA material is not protected by copyright unless noted"):
 
