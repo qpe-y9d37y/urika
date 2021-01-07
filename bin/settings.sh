@@ -25,8 +25,10 @@
 #                                                                      #
 
 # Files and directories.
+DIR_HOME="/home/urika"
 RES_LINK="/etc/X11/Xsession.d/45setoutput"
-RES_SCRIPT="/home/urika/bin/setoutput.sh"
+RES_SCRIPT="${DIR_HOME}/bin/setoutput.sh"
+NET_SCRIPT="${DIR_HOME}/bin/netconf.sh"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                                                                      #
@@ -36,8 +38,7 @@ RES_SCRIPT="/home/urika/bin/setoutput.sh"
 # Function to manage screen resolution
 function scresolution {
   # Zenity menu.
-  ANS_SCRES=$(zenity --list \
-    --text="" --radiolist \
+  ANS_SCRES=$(zenity --list --text="" --radiolist \
     --column="Pick" --column="Option" \
     FALSE "Reset screen resolution" \
     FALSE "Change screen resolution")
@@ -53,8 +54,7 @@ function scresolution {
     ;;
     "Change screen resolution" )
       # Choose resolution with xrandr -q
-      SCR_RES=$(zenity --list \
-        --text="" --radiolist \
+      SCR_RES=$(zenity --list --text="" --radiolist \
         --column="Pick" --column="Option" \
 	FALSE Default \
         $(for RESOLUTION in \
@@ -91,16 +91,17 @@ function scresolution {
 #                                                                      #
 
 # Main menu
-ANS_MAIN=$(zenity --list \
-  --text="" --radiolist \
+ANS_MAIN=$(zenity --list --text="" --radiolist \
   --column="Pick" --column="Option" \
   FALSE "Update system" \
-  FALSE "Screen resolution")
+  FALSE "Screen resolution" \
+  FALSE "Network configuration")
 
 # Launch selected action.
 case ${ANS_MAIN} in
   "Update system" ) sudo apt update && sudo apt -y upgrade ;;
   "Screen resolution" ) scresolution ;;
+  "Network configuration" ) sudo ${NET_SCRIPT} ;;
   * ) exit 0 ;;
 esac
 

@@ -92,7 +92,7 @@ echo "${URIKA_USR} ALL = (ALL) NOPASSWD: ALL" > /etc/sudoers.d/00-Urika
 apt-get update
 
 # Install required packages.
-apt-get install -y sudo xorg openbox lightdm firefox-esr gnome-terminal dialog curl
+apt-get install -y sudo xorg openbox lightdm firefox-esr gnome-terminal zenity curl
 
 # Create lightdm configuration directory.
 mkdir /etc/lightdm
