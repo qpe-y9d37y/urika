@@ -19,7 +19,7 @@ except for two steps:
 
 * At then end of the installation, you'll be asked to choose software to install, untick all boxes anc click "Continue".
 
-Setup the network and continue. If you need help to setup the network, check [HELP_netconf.md].
+Setup the network and continue. If you need help to setup the network, check [HELP_netconf.md](HELP_netconf.md).
 
 ### Git Repository
 
