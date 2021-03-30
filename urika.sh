@@ -63,27 +63,9 @@ fi
 
 # Check network connection.
 ping -c 1 8.8.8.8 > /dev/null
-if [[ $? == 0 ]]; then
-  echo "Network reachable"
-else
-  echo "Network not reachable"
-
-  # Ask if cfg network with script.
-  echo "Do you want to configure the network?"
-  select ANS_NETCFG in "Yes" "No"; do
-    case ${ANS_NETCFG} in
-      No ) echo "Cannot continue without reachable network, good bye" && exit 0 ;;
-      Yes )
-        ./util/deb_netconf.sh
-	break
-      ;;
-    esac
-  done
+if [[ $? != 0 ]]; then
+  echo "Network not reachable, good bye." && exit 1
 fi
-
-# Create urika group and user.
-groupadd ${URIKA_GRP}
-useradd -m -d ${DIR_HOME} -g ${URIKA_GRP} ${URIKA_USR}
 
 # Grant sudo rights to urika user.
 echo "${URIKA_USR} ALL = (ALL) NOPASSWD: ALL" > /etc/sudoers.d/00-Urika
@@ -115,8 +97,7 @@ cat > ${DIR_HOME}/.config/openbox/autostart << EOM
 firefox --kiosk ${DIR_HOME}/html/index.html &
 EOM
 
-# Copy html directory.
-cp -r ./html ${DIR_HOME}/
+# Set correct permissions for html directory.
 chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/html
 chmod 755 ${DIR_HOME}/html ${DIR_HOME}/html/images ${DIR_HOME}/html/icons
 chmod 644 ${DIR_HOME}/html/index.html ${DIR_HOME}/html/images/* ${DIR_HOME}/html/icons/*
@@ -135,8 +116,7 @@ EOM
 # Refresh mime types database.
 update-desktop-database
 
-# Copy bin directory.
-cp -r ./bin ${DIR_HOME}/
+# Set correct permissions for bin directory.
 chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/bin
 chmod -R 755 ${DIR_HOME}/bin
 
@@ -151,10 +131,6 @@ apt-get update
 
 # Install spotify.
 apt-get install -y spotify-client
-
-# Copy spotify icon.
-cp /usr/share/spotify/icons/spotify-linux-128.png ${DIR_HOME}/html/icons/spotify.png
-chown ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/html/icons/spotify.png
 
 # Set Firefox homepage.
 ### user_pref("browser.startup.homepage", "${DIR_HOME}/html/index.html");
