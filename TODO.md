@@ -11,4 +11,4 @@
 - [ ] Setting default screen resolution shouldn't require a reboot in [settings.sh](../master/bin/settings.sh)
 - [ ] Solve bug when choosing SSIDs in [deb_netconf.sh](../master/util/deb_netconf.sh)
 - [ ] Remove GRUB timeout
-- [ ] Could make [urika.sh](urika.sh) nicer without cmds result (logs) but status
+- [X] Could make [urika.sh](urika.sh) nicer without cmds result (logs) but status
