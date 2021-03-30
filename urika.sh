@@ -6,7 +6,7 @@
 #                                                                      #
 #                               urika.sh                               #
 #                                                                      #
-# Current version: 0.1                                                 #
+# Current version: 0.2                                                 #
 # Status: Work in progress                                             #
 #                                                                      #
 # This script purpose is to setup an entertainment system.             #
@@ -16,6 +16,7 @@
 # |   Date   | Author | Vers | Comment                               | #
 # +==========+========+======+=======================================+ #
 # | 20210103 | QPE    | 0.1  | Starting development                  | #
+# | 20210330 | QPE    | 0.2  | Simplify script to permit update      | #
 # +----------+--------+------+---------------------------------------+ #
 ########################################################################
 
@@ -99,8 +100,8 @@ EOM
 
 # Set correct permissions for html directory.
 chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/html
-chmod 755 ${DIR_HOME}/html ${DIR_HOME}/html/images ${DIR_HOME}/html/icons
-chmod 644 ${DIR_HOME}/html/index.html ${DIR_HOME}/html/images/* ${DIR_HOME}/html/icons/*
+chmod 755 ${DIR_HOME}/html
+chmod 644 ${DIR_HOME}/html/index.html
 
 # Create .desktop file for application launcher.
 cat > /usr/share/applications/appurl.desktop << EOM
