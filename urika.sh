@@ -6,7 +6,7 @@
 #                                                                      #
 #                               urika.sh                               #
 #                                                                      #
-# Current version: 0.2                                                 #
+# Current version: 0.3                                                 #
 # Status: Work in progress                                             #
 #                                                                      #
 # This script purpose is to setup an entertainment system.             #
@@ -17,6 +17,7 @@
 # +==========+========+======+=======================================+ #
 # | 20210103 | QPE    | 0.1  | Starting development                  | #
 # | 20210330 | QPE    | 0.2  | Simplified and better looking         | #
+# | 20210726 | QPE    | 0.3  | Dl Molotov + permissions              | #
 # +----------+--------+------+---------------------------------------+ #
 ########################################################################
 
