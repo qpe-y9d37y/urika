@@ -158,6 +158,12 @@ chmod 644 ${DIR_HOME}/html/index.html
 chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/bin
 chmod -R 755 ${DIR_HOME}/bin
 
+# Download Molotov and set correct permissions.
+cd ${DIR_HOME}/bin
+wget https://desktop-auto-upgrade.molotov.tv/linux/4.4.4/molotov.AppImage
+chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/bin/molotov.AppImage
+chmod -R 755 ${DIR_HOME}/bin/molotov.AppImage
+
 # Print status.
 echo -e "[\e[92mOK\e[0m]" > /dev/tty
 echo -n "App launcher        " > /dev/tty
