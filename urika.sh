@@ -225,7 +225,10 @@ cat >> ${DIR_HOME}/.bash_aliases << EOM
 alias ll='ls -l'
 EOM
 chmod 644 ${DIR_HOME}/.bash_aliases
-chown urika:urika ${DIR_HOME}/.bash_aliases
+chown urika:urika ${DIR_HOME}/.
+
+# Print status.
+echo -e "[\e[92mOK\e[0m]" > /dev/tty
 
 #                                                                      #
 #                                  END                                 #
