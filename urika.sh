@@ -211,7 +211,7 @@ echo -n "Firefox config      " > /dev/tty
 ### /etc/skel/.mozilla/firefox/mwad0hks.default/prefs.js
 if [[ -d ${DIR_HOME}/.mozilla ]]; then 
   cd ${DIR_HOME}/.mozilla/firefox/*.default && \
-    echo "user_pref(\"browser.startup.homepage\", \"${DIR_HOME}/html/index.html\");" > user.js && \
+    echo "user_pref(\"browser.startup.homepage\", \"${DIR_URIKA}/html/index.html\");" > user.js && \
     chown ${URIKA_USR}:${URIKA_GRP} user.js
 fi
 
@@ -220,12 +220,12 @@ echo -e "[\e[92mOK\e[0m]" > /dev/tty
 echo -n "CLI aliases         " > /dev/tty
 
 # Add CLI aliases.
-cat >> ${DIR_HOME}/.bash_aliases << EOM
+cat > ${DIR_HOME}/.bash_aliases << EOM
 # ls alias
 alias ll='ls -l'
 EOM
 chmod 644 ${DIR_HOME}/.bash_aliases
-chown urika:urika ${DIR_HOME}/.
+chown ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/.
 
 # Print status.
 echo -e "[\e[92mOK\e[0m]" > /dev/tty
