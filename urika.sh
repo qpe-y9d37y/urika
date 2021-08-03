@@ -32,7 +32,7 @@ URIKA_GRP="urika"
 
 # Files and directories.
 DIR_HOME="/home/urika"
-DIR_URIKA="${DIR_HOME}/theatre"
+DIR_URIKA="${DIR_HOME}/Theatre"
 DIR_LOG="${DIR_URIKA}/log"
 FIL_LOG="${DIR_LOG}/$(basename ${0} | sed 's/.sh/.log/')"
 
