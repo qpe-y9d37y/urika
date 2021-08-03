@@ -31,8 +31,9 @@ URIKA_USR="urika"
 URIKA_GRP="urika"
 
 # Files and directories.
-DIR_HOME="/home/urika/theatre"
-DIR_LOG="${DIR_HOME}/log"
+DIR_HOME="/home/urika"
+DIR_URIKA="${DIR_HOME}/theatre"
+DIR_LOG="${DIR_URIKA}/log"
 FIL_LOG="${DIR_LOG}/$(basename ${0} | sed 's/.sh/.log/')"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -86,10 +87,10 @@ if [[ $? != 0 ]]; then
   exit 1
 fi
 
-# Check ${DIR_HOME}.
-if [[ ! -d ${DIR_HOME} ]]; then
+# Check ${DIR_URIKA}.
+if [[ ! -d ${DIR_URIKA} ]]; then
   echo -e "[\e[91mKO\e[0m]" > /dev/tty
-  echo -e "[\e[91mERR\e[0m] ${DIR_HOME} doesn't exist. Please read README.md." > /dev/tty
+  echo -e "[\e[91mERR\e[0m] ${DIR_URIKA} doesn't exist. Please read README.md." > /dev/tty
   exit 1
 fi
 
@@ -144,7 +145,7 @@ chmod 755 ${DIR_HOME}/.config ${DIR_HOME}/.config/openbox
 # Create autostart script.
 cat > ${DIR_HOME}/.config/openbox/autostart << EOM
 #!/bin/bash
-firefox --kiosk ${DIR_HOME}/html/index.html &
+firefox --kiosk ${DIR_URIKA}/html/index.html &
 EOM
 
 # Print status.
@@ -152,19 +153,19 @@ echo -e "[\e[92mOK\e[0m]" > /dev/tty
 echo -n "File permissions    " > /dev/tty
 
 # Set correct permissions for html directory.
-chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/html
-chmod 755 ${DIR_HOME}/html
-chmod 644 ${DIR_HOME}/html/index.html
+chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_URIKA}/html
+chmod 755 ${DIR_URIKA}/html
+chmod 644 ${DIR_URIKA}/html/index.html
 
 # Set correct permissions for bin directory.
-chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/bin
-chmod -R 755 ${DIR_HOME}/bin
+chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_URIKA}/bin
+chmod -R 755 ${DIR_URIKA}/bin
 
 # Download Molotov and set correct permissions.
-cd ${DIR_HOME}/bin
+cd ${DIR_URIKA}/bin
 wget https://desktop-auto-upgrade.molotov.tv/linux/4.4.4/molotov.AppImage
-chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/bin/molotov.AppImage
-chmod -R 755 ${DIR_HOME}/bin/molotov.AppImage
+chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_URIKA}/bin/molotov.AppImage
+chmod -R 755 ${DIR_URIKA}/bin/molotov.AppImage
 
 # Print status.
 echo -e "[\e[92mOK\e[0m]" > /dev/tty
@@ -174,7 +175,7 @@ echo -n "App launcher        " > /dev/tty
 cat > /usr/share/applications/appurl.desktop << EOM
 [Desktop Entry]
 Name=TerminalURL
-Exec=${DIR_HOME}/bin/open_app.sh %u
+Exec=${DIR_URIKA}/bin/open_app.sh %u
 Type=Application
 NoDisplay=true
 Categories=System;
@@ -216,6 +217,15 @@ fi
 
 # Print status.
 echo -e "[\e[92mOK\e[0m]" > /dev/tty
+echo -n "CLI aliases         " > /dev/tty
+
+# Add CLI aliases.
+cat >> ${DIR_HOME}/.bash_aliases << EOM
+# ls alias
+alias ll='ls -l'
+EOM
+chmod 644 ${DIR_HOME}/.bash_aliases
+chown urika:urika ${DIR_HOME}/.bash_aliases
 
 #                                                                      #
 #                                  END                                 #
