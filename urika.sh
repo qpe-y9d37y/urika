@@ -18,7 +18,7 @@
 # | 20210103 | QPE    | 0.1  | Starting development                  | #
 # | 20210330 | QPE    | 0.2  | Simplified and better looking         | #
 # | 20210726 | QPE    | 0.3  | Dl Molotov + permissions              | #
-# | 20210803 | QPE    | 0.4  | Dest path is not empty error          | #
+# | 20210803 | QPE    | 0.4  | "dest path is not empty" error        | #
 # +----------+--------+------+---------------------------------------+ #
 ########################################################################
 
