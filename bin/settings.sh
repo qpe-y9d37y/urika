@@ -27,7 +27,7 @@
 
 # Files and directories.
 DIR_HOME="/home/urika"
-DIR_URIKA="${DIR_HOME}/Theater"
+DIR_URIKA="${DIR_HOME}/Theatre"
 RES_LINK="/etc/X11/Xsession.d/45setoutput"
 RES_SCRIPT="${DIR_URIKA}/bin/setoutput.sh"
 NET_SCRIPT="${DIR_URIKA}/bin/netconf.sh"
