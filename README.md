@@ -28,15 +28,15 @@ Login as root and install git:
 apt update
 apt install git
 ```
-Switch to urika user and clone the git repository (don't forget the `.` after the url):
+Switch to urika user and clone the git repository:
 ```
 su - urika
-git clone https://github.com/qpe-y9d37y/urika.git ./theatre/
+git clone https://github.com/qpe-y9d37y/urika.git ./Theatre/
 ```
 Once done, switch back to root and launch the installation script:
 ```
 exit
-cd /home/urika/theatre
+cd /home/urika/Theatre
 ./urika.sh
 ```
 
