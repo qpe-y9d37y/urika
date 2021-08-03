@@ -6,7 +6,7 @@
 #                                                                      #
 #                              settings.sh                             #
 #                                                                      #
-# Current version: 0.1                                                 #
+# Current version: 0.2                                                 #
 # Status: Work in progress                                             #
 #                                                                      #
 # This script purpose it to access to some basic settings from the     #
@@ -17,6 +17,7 @@
 # |   Date   | Author | Vers | Comment                               | #
 # +==========+========+======+=======================================+ #
 # | 20210105 | QPE    | 0.1  | Starting development                  | #
+# | 20210803 | QPE    | 0.2  | Add DIR_URIKA var                     | #
 # +----------+--------+------+---------------------------------------+ #
 ########################################################################
 
@@ -26,9 +27,10 @@
 
 # Files and directories.
 DIR_HOME="/home/urika"
+DIR_URIKA="${DIR_HOME}/Theater"
 RES_LINK="/etc/X11/Xsession.d/45setoutput"
-RES_SCRIPT="${DIR_HOME}/bin/setoutput.sh"
-NET_SCRIPT="${DIR_HOME}/bin/netconf.sh"
+RES_SCRIPT="${DIR_URIKA}/bin/setoutput.sh"
+NET_SCRIPT="${DIR_URIKA}/bin/netconf.sh"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                                                                      #
