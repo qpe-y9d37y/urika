@@ -30,7 +30,7 @@ APP=${1#app://}
 
 # Files and directories.
 DIR_HOME="/home/urika"
-DIR_URIKA="${DIR_HOME}/Theater"
+DIR_URIKA="${DIR_HOME}/Theatre"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #                                                                      #
