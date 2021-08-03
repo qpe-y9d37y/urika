@@ -117,7 +117,7 @@ echo -n "Install packages    " > /dev/tty
 apt-get update
 
 # Install required packages.
-apt-get install -y sudo xorg openbox lightdm firefox-esr gnome-terminal zenity curl pulseaudio alsamixergui
+apt-get install -y sudo xorg openbox lightdm firefox-esr gnome-terminal zenity curl pulseaudio alsamixergui wget
 
 # Print status.
 echo -e "[\e[92mOK\e[0m]" > /dev/tty
