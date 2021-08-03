@@ -8,7 +8,8 @@
 - [X] Use zenity instead of dialog in [power_mgmt.sh](../master/bin/power_mgmt.sh)
 - [X] Use zenity instead of dialog in [settings.sh](../master/bin/settings.sh)
 - [ ] Some screen resolution do not work in [settings.sh](../master/bin/settings.sh)
-- [ ] Setting default screen resolution shouldn't require a reboot in [settings.sh](../master/bin/settings.sh)
+- [X] Setting default screen resolution shouldn't require a reboot in [settings.sh](../master/bin/settings.sh)
 - [ ] Solve bug when choosing SSIDs in [deb_netconf.sh](../master/util/deb_netconf.sh)
 - [ ] Remove GRUB timeout
 - [X] Could make [urika.sh](urika.sh) nicer without cmds result (logs) but status
+- [ ] Do not replace Molotov if version isn't updated
