@@ -6,7 +6,7 @@
 #                                                                      #
 #                               urika.sh                               #
 #                                                                      #
-# Current version: 0.3                                                 #
+# Current version: 0.4                                                 #
 # Status: Work in progress                                             #
 #                                                                      #
 # This script purpose is to setup an entertainment system.             #
@@ -18,6 +18,7 @@
 # | 20210103 | QPE    | 0.1  | Starting development                  | #
 # | 20210330 | QPE    | 0.2  | Simplified and better looking         | #
 # | 20210726 | QPE    | 0.3  | Dl Molotov + permissions              | #
+# | 20210803 | QPE    | 0.4  | Dest path is not empty error          | #
 # +----------+--------+------+---------------------------------------+ #
 ########################################################################
 
@@ -30,7 +31,7 @@ URIKA_USR="urika"
 URIKA_GRP="urika"
 
 # Files and directories.
-DIR_HOME="/home/urika"
+DIR_HOME="/home/urika/theatre"
 DIR_LOG="${DIR_HOME}/log"
 FIL_LOG="${DIR_LOG}/$(basename ${0} | sed 's/.sh/.log/')"
 
