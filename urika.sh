@@ -161,6 +161,10 @@ chmod 644 ${DIR_URIKA}/html/index.html
 chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_URIKA}/bin
 chmod -R 755 ${DIR_URIKA}/bin
 
+# Print status.
+echo -e "[\e[92mOK\e[0m]" > /dev/tty
+echo -n "Download Molotov    " > /dev/tty
+
 # Download Molotov and set correct permissions.
 cd ${DIR_URIKA}/bin
 wget https://desktop-auto-upgrade.molotov.tv/linux/4.4.4/molotov.AppImage
