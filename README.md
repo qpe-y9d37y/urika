@@ -23,7 +23,7 @@ Setup the network and continue. If you need help to setup the network, check [HE
 
 ### Git Repository
 
-Login and root and install git:
+Login as root and install git:
 ```
 apt update
 apt install git
