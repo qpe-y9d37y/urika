@@ -6,7 +6,7 @@
 #                                                                      #
 #                              settings.sh                             #
 #                                                                      #
-# Current version: 0.2                                                 #
+# Current version: 0.3                                                 #
 # Status: Work in progress                                             #
 #                                                                      #
 # This script purpose it to access to some basic settings from the     #
@@ -18,6 +18,7 @@
 # +==========+========+======+=======================================+ #
 # | 20210105 | QPE    | 0.1  | Starting development                  | #
 # | 20210803 | QPE    | 0.2  | Add DIR_URIKA var                     | #
+# | 20210804 | QPE    | 0.3  | Add "Update urika" option             | #
 # +----------+--------+------+---------------------------------------+ #
 ########################################################################
 
@@ -96,6 +97,7 @@ function scresolution {
 ANS_MAIN=$(zenity --list --text="" --radiolist \
   --column="Pick" --column="Option" \
   FALSE "Update system" \
+  FALSE "Update urika" \
   FALSE "Open terminal" \
   FALSE "Screen resolution" \
   FALSE "Network configuration")
@@ -105,6 +107,10 @@ case ${ANS_MAIN} in
   "Update system" ) 
     ( sudo apt update && sudo apt -y upgrade ) | zenity --progress \
       --title="Update system" --percentage=0 --auto-close
+  ;;
+  "Update urika" )
+    ( cd ${DIR_URIKA} && git pull && sudo ./urika.sh ) | zenity \
+      --progress --title="Update system" --percentage=0 --auto-close
   ;;
   "Open terminal" ) gnome-terminal ;;
   "Screen resolution" ) scresolution ;;
