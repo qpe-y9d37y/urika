@@ -6,7 +6,7 @@
 #                                                                      #
 #                               urika.sh                               #
 #                                                                      #
-# Current version: 0.4                                                 #
+# Current version: 0.5                                                 #
 # Status: Work in progress                                             #
 #                                                                      #
 # This script purpose is to setup an entertainment system.             #
@@ -19,6 +19,7 @@
 # | 20210330 | QPE    | 0.2  | Simplified and better looking         | #
 # | 20210726 | QPE    | 0.3  | Dl Molotov + permissions              | #
 # | 20210803 | QPE    | 0.4  | "dest path is not empty" error        | #
+# | 20210804 | QPE    | 0.5  | Improve Molotov dl                    | #
 # +----------+--------+------+---------------------------------------+ #
 ########################################################################
 
@@ -166,10 +167,16 @@ echo -e "[\e[92mOK\e[0m]" > /dev/tty
 echo -n "Download Molotov    " > /dev/tty
 
 # Download Molotov and set correct permissions.
-cd ${DIR_URIKA}/bin
+cd /tmp
 wget https://desktop-auto-upgrade.molotov.tv/linux/4.4.4/molotov.AppImage
-chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_URIKA}/bin/molotov.AppImage
-chmod -R 755 ${DIR_URIKA}/bin/molotov.AppImage
+diff ${DIR_URIKA}/bin/molotov.AppImage /tmp/molotov.AppImage
+if [[ $? != 0 ]]; then
+  mv /tmp/molotov.AppImage ${DIR_URIKA}/bin/molotov.AppImage
+  chown -R ${URIKA_USR}:${URIKA_GRP} ${DIR_URIKA}/bin/molotov.AppImage
+  chmod -R 755 ${DIR_URIKA}/bin/molotov.AppImage
+else
+  rm /tmp/molotov.AppImage
+fi
 
 # Print status.
 echo -e "[\e[92mOK\e[0m]" > /dev/tty
