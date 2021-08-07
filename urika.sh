@@ -6,7 +6,7 @@
 #                                                                      #
 #                               urika.sh                               #
 #                                                                      #
-# Current version: 0.5                                                 #
+# Current version: 0.6                                                 #
 # Status: Work in progress                                             #
 #                                                                      #
 # This script purpose is to setup an entertainment system.             #
@@ -20,6 +20,7 @@
 # | 20210726 | QPE    | 0.3  | Dl Molotov + permissions              | #
 # | 20210803 | QPE    | 0.4  | "dest path is not empty" error        | #
 # | 20210804 | QPE    | 0.5  | Improve Molotov dl                    | #
+# | 20210806 | QPE    | 0.6  | Set GRUB timeout to 0                 | #
 # +----------+--------+------+---------------------------------------+ #
 ########################################################################
 
@@ -237,6 +238,17 @@ alias ll='ls -l'
 EOM
 chmod 644 ${DIR_HOME}/.bash_aliases
 chown ${URIKA_USR}:${URIKA_GRP} ${DIR_HOME}/.
+
+# Print status.
+echo -e "[\e[92mOK\e[0m]" > /dev/tty
+echo -n "Remove GRUB timeout " > /dev/tty
+
+# Set GRUB timeout to 0.
+GRUB_TIMEOUT_VAL=$(grep "^GRUB_TIMEOUT=" /etc/default/grub | awk -F'=' '{print $2}')
+if [[ ${GRUB_TIMEOUT_VAL} != "0" ]]; then
+  sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' /etc/default/grub
+  update-grub
+fi
 
 # Print status.
 echo -e "[\e[92mOK\e[0m]" > /dev/tty
