@@ -12,4 +12,4 @@
 - [ ] Solve bug when choosing SSIDs in [deb_netconf.sh](../master/util/deb_netconf.sh)
 - [X] Remove GRUB timeout
 - [X] Could make [urika.sh](urika.sh) nicer without cmds result (logs) but status
-- [ ] Do not replace Molotov if version isn't updated
+- [X] Do not replace Molotov if version isn't updated
