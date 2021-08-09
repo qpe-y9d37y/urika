@@ -17,3 +17,12 @@ GRUB installation failed
 The 'grub-efi-amd64' package failed to instal into /target/. Without the GRUB boot loader, the installed system will not boot.
 '''
 Try to delete all existing partitions with GParted first.
+
+## Update coreboot firmware (BIOS)
+
+To update coreboot firmware (BIOS), do:
+'''
+cd ~
+curl -L -O http://mrchromebox.tech/firmware-util.sh
+sudo bash firmware-util.sh
+'''
